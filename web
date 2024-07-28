@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arita+Dotum:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arita Dotum', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .header-container {
+            width: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            width: 70%;
+            margin: 20px auto;
+            overflow: hidden;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        header {
+            background: #4caf50 url('https://www.transparenttextures.com/patterns/tiny-grid.png') repeat;
+            padding: 20px 0;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+            position: relative;
+        }
+        header .container {
+            padding: 7px 0;
+            border-radius: 20px;
+            position: relative;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #fff;
+            position: relative;
+            animation: glitter 3s linear infinite;
+        }
+        @keyframes glitter {
+            0% { text-shadow: 0 0 5px rgb(53, 172, 2); }
+            50% { text-shadow: 0 0 20px rgb(53, 172, 2), 0 0 30px rgb(53, 172, 2), 0 0 40px rgb(53, 172, 2); }
+            100% { text-shadow: 0 0 5px #ff0; }
+        }
+        .main {
+            padding: 30px;
+        }
+        footer {
+            background: #e0e0e0;
+            color: #333;
+            text-align: center;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+            margin-top: 20px;
+        }
+        .portfolio-item {
+            margin-bottom: 20px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .portfolio-item:hover {
+            background: #f9f9f9;
+        }
+        .portfolio-item h3 {
+            margin: 0;
+            color: #4caf50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .portfolio-item p, .portfolio-item img, .portfolio-item small {
+            display: none;
+            margin-top: 10px;
+            color: #333;
+        }
+        .portfolio-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .arrow {
+            transform: rotate(0deg);
+            transition: transform 0.3s;
+        }
+        .arrow.down {
+            transform: rotate(180deg);
+        }
+        h2::before {
+            content: "👩 ";
+            margin-right: 6px;
+        }
+        h2.skill-stack::before {
+            content: "🛠️ ";
+        }
+        h2.certificate::before {
+            content: "🏆 ";
+        }
+        h2.Main-Projects::before {
+            content: "📄 ";
+        }
+        h2.TIL-Notion-URL::before {
+            content: "📎 ";
+        }
+        h2.Development-History::before {
+            content: "✏️ ";
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 2px solid #4caf50;
+            border-style: dotted;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #e8f5e9;
+            font-weight: bold;
+        }
+        td:first-child {
+            width: 20%;
+        }
+        td:last-child {
+            width: 80%;
+        }
+        table.skill-table td:first-child {
+            width: 30%;
+        }
+        table.skill-table td, table.skill-table th, table.certificate-table td, table.certificate-table th {
+            font-weight: bold;
+        }
+        table.certificate-table td:nth-child(1) {
+            width: 10%;
+        }
+        table.certificate-table td:nth-child(2) {
+            width: 50%;
+        }
+        table.certificate-table td:nth-child(3) {
+            width: 30%;
+        }
+        table.certificate-table td:nth-child(4) {
+            width: 20%;
+        }
+        img.skill-image {
+            display: block;
+            max-width: 100%;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li::before {
+            content: "♦";
+            margin-right: 8px;
+            color: #4caf50;
+        }
+        .section-title {
+            background-color: #a5d6a7;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .highlight { /*형광펜*/
+            background-color: #dffcdf68; 
+            padding: 0 5px; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Agent Portfolio</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="main">
+            <section>
+                <h2 class="Introduction section-title">Introduction</h2>
+                <h3><span class="highlight">⭐Name | 명희원 Myoung Heewon</span></h3>
+                <p>안녕하세요, 저는 <b>데이터 기반 사용자 경험 설계</b>와 <b>프로토타입 개발 및 신규 서비스 구축</b>을 통해 고객 요구를 실현하는 데이터 엔지니어입니다.</p>
+                <h3><span class="highlight">⭐Vision</span></h3>
+                <ul>
+                    <li>AI 혁신의 최전선에서 활약하는 엔지니어</li>
+                    <li>기술적 전문성을 기반으로 다양한 이해관계자와 원활한 소통</li>
+                </ul>
+                <h3><span class="highlight">⭐Attitude Towards Life</span></h3>
+                <ul>
+                    <li>삶의 중요한 가치 : <b>새로운 시도</b>를 통해 <b>배움</b>을 얻고 <b>성장</b>하는 것</li>
+                    <li>어떤 상황이던, 어떤 사람을 만나던 항상 <b>배울 점</b>을 찾습니다</li>
+                    <li><b>새로운 기술과 Tool</b> 사용을 학습하고 익히는 것을 좋아합니다</li>
+                </ul>
+            </section>
+            <section>
+                <h2 class="TIL-Notion-URL section-title">TIL Notion URL</h2>
+                <p>학습과 업무를 통해 배운 점을 정리한 노션 페이지 입니다😊 <a href="https://www.notion.so/d40088efe5864cfbb9a67a1d847c753d?pvs=4" target="_blank">노션 페이지</a></p>
+            </section>
+            <section>
+                <h2 class="certificate section-title">Certificate</h2>
+                    <table class="certificate-table">
+                        <tr>
+                            <th>No.</th>
+                            <th>자격증명</th>
+                            <th>기관</th>
+                            <th>취득일자</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td><span class="highlight">AWS Data Analytics-Specialty</span></td>
+                            <td>AWS</td>
+                            <td>24.04.06</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><span class="highlight">AWS Solutions Architect-Associate</span></td>
+                            <td>AWS</td>
+                            <td>22.08.07</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><span class="highlight">SQLD</span></td>
+                            <td>한국데이터산업진흥원</td>
+                            <td>22.09.30</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><span class="highlight">컴퓨터활용능력 1급</span></td>
+                            <td>대한상공회의소</td>
+                            <td>20.03.13</td>
+                        </tr>
+                    </table>
+            </section>
+            <section>
+                <h2 class="Development-History section-title">Dev Timeline</h2>
+
+            </sections>
+            <section>
+                <h2 class="Main-Projects section-title">Main Projects</h2>
+                <div class="portfolio-item"> 
+                    <h3>AICC 구축/개발 <span class="arrow">&#9660;</span></h3>
+                    <p><b>1. 프로젝트명: AICC(AI상담센터) 사내 도입 구축/개발</b></p>
+                    <p><b>2. 회사명</b>: KT skylife</p>
+                    <p><b>3. 목적</b>: 상담 프로세스 자동화 및 품질 개선을 위한 챗봇, 보이스봇, 상담 Assist 등 AI솔루션 도입</p>
+                    <p><b>4. 담당 업무</b></p>
+                    <div style="display: none;">
+                        <ul>
+                            <li><strong>담당 솔루션:</strong> STT, TTS, SV(화자인증), AMP, TA</li>
+                            <li>전사 작업, 데이터 검증, 학습 패턴, 사전 데이터 생성</li>
+                            <li>LLM 활용 TA 상담 요약 및 자동 분류 성능 개선 PoC(gpt-3.5-turbo, Llama) 및 개발</li>
+                            <li>상담 매니저 그룹 대상 리서치 및 솔루션 성능 개선</li>
+                        </ul>
+                    </div>
+                    <p><b>5. Skill</b>: Python, Prompt Engineering(OpenAI), SQL,  Elasticsearch(Grafana), Linux</p>
+                    <p><b>6. 성과<b>: 각 솔루션 목표 평가 지표 달성, TA 성능 개선으로 요약 자동화 기능 구현, 콜당 4.5초 연간 4.28명 인력 감축 기대</p>
+                    <img src="사진/DEV Tilmeline.png" alt="프로젝트 1 이미지">
+                    <small>프로젝트 1 이미지 설명</small>
+                </div>
+                <div class="portfolio-item">
+                    <h3>프로젝트 <span class="arrow">&#9660;</span></h3>
+                    <p><b>1. 프로젝트명: </b></p>
+                    <p><b>2. 회사명</b>: KT skylife</p>
+                    <p><b>3. 목적</b>: </p>
+                    <p><b>4. 담당 업무</b></p>
+                    <div style="display: none;">
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <p><b>5. Skill</b>: 사용된 기술</p>
+                    <p><b>6. 성과<b>: 성과</p>
+                    <img src="project.jpg" alt="프로젝트 이미지">
+                    <small>이미지 설명</small>
+                </div>
+                <div class="portfolio-item">
+                    <h3>프로젝트 <span class="arrow">&#9660;</span></h3>
+                    <p><b>1. 프로젝트명: </b></p>
+                    <p><b>2. 회사명</b>: KT skylife</p>
+                    <p><b>3. 목적</b>: </p>
+                    <p><b>4. 담당 업무</b></p>
+                    <div style="display: none;">
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </div>
+                        <p><b>5. Skill</b>: 사용된 기술</p>
+                    <p><b>6. 성과<b>: 성과</p>
+                    <img src="project.jpg" alt="프로젝트 이미지">
+                    <small>이미지 설명</small>
+                </div>
+                <div class="portfolio-item">
+                    <h3>프로젝트 <span class="arrow">&#9660;</span></h3>
+                    <p><b>1. 프로젝트명: </b></p>
+                    <p><b>2. 회사명</b>: KT skylife</p>
+                    <p><b>3. 목적</b>: </p>
+                    <p><b>4. 담당 업무</b></p>
+                    <div style="display: none;">
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </div>
+                        <p><b>5. Skill</b>: 사용된 기술</p>
+                    <p><b>6. 성과<b>: 성과</p>
+                    <img src="project.jpg" alt="프로젝트 이미지">
+                    <small>이미지 설명</small>
+                </div>
+                <div class="portfolio-item">
+                    <h3>프로젝트 <span class="arrow">&#9660;</span></h3>
+                    <p><b>1. 프로젝트명: </b></p>
+                    <p><b>2. 회사명</b>: KT skylife</p>
+                    <p><b>3. 목적</b>: </p>
+                    <p><b>4. 담당 업무</b></p>
+                    <div style="display: none;">
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </div>
+                        <p><b>5. Skill</b>: 사용된 기술</p>
+                    <p><b>6. 성과<b>: 성과</p>
+                    <img src="project.jpg" alt="프로젝트 이미지">
+                    <small>이미지 설명</small>
+                </div>
+                <div class="portfolio-item">
+                    <h3>프로젝트 <span class="arrow">&#9660;</span></h3>
+                    <p><b>1. 프로젝트명: </b></p>
+                    <p><b>2. 회사명</b>: KT skylife</p>
+                    <p><b>3. 목적</b>: </p>
+                    <p><b>4. 담당 업무</b></p>
+                    <div style="display: none;">
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </div>
+                        <p><b>5. Skill</b>: 사용된 기술</p>
+                    <p><b>6. 성과<b>: 성과</p>
+                    <img src="project.jpg" alt="프로젝트 이미지">
+                    <small>이미지 설명</small>
+                </div>
+                <div class="portfolio-item">
+                    <h3>프로젝트 <span class="arrow">&#9660;</span></h3>
+                    <p><b>1. 프로젝트명: </b></p>
+                    <p><b>2. 회사명</b>: KT skylife</p>
+                    <p><b>3. 목적</b>: </p>
+                    <p><b>4. 담당 업무</b></p>
+                    <div style="display: none;">
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </div>
+                        <p><b>5. Skill</b>: 사용된 기술</p>
+                    <p><b>6. 성과<b>: 성과</p>
+                    <img src="project.jpg" alt="프로젝트 이미지">
+                    <small>이미지 설명</small>
+                </div>
+                <div class="portfolio-item">
+                    <h3>프로젝트 <span class="arrow">&#9660;</span></h3>
+                    <p><b>1. 프로젝트명: </b></p>
+                    <p><b>2. 회사명</b>: KT skylife</p>
+                    <p><b>3. 목적</b>: </p>
+                    <p><b>4. 담당 업무</b></p>
+                    <div style="display: none;">
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </div>
+                        <p><b>5. Skill</b>: 사용된 기술</p>
+                    <p><b>6. 성과<b>: 성과</p>
+                    <img src="project.jpg" alt="프로젝트 이미지">
+                    <small>이미지 설명</small>
+                </div>
+            </section>
+            <section>
+                <h2 class="skill-stack section-title">Skill Stack</h2>
+                <table class="skill-table">
+                    <tr>
+                        <th>구분</th>
+                        <th>보유 Skill</th>
+                    </tr>
+                    <tr>
+                        <td>Programming Language</td>
+                        <td>Python, SQL, C/C++, HTML/CSS</td>
+                    </tr>
+                    <tr>
+                        <td>Framework, Library</td>
+                        <td>PyQt5, Pandas, Tensorflow, Keras, Numpy, Matplotlib, Hadoop, Gradio</td>
+                    </tr>
+                    <tr>
+                        <td>Tool(Platform) & IDE</td>
+                        <td>Elasticsearch, Jupyter notebook, Git, Pycharm, Databricks, Docker, Airflow</td>
+                    </tr>
+                    <tr>
+                        <td>Cloud</td>
+                        <td>AWS</td>
+                    </tr>
+                    <tr>
+                        <td>UI Design</td>
+                        <td>Qt Designer</td>
+                    </tr>
+                    <tr>
+                        <td>Environment(OS)</td>
+                        <td>Windows, Linux(Ubuntu)</td>
+                    </tr>
+                    <tr>
+                        <td>BI & Monitoring</td>
+                        <td>Grafana, Qlik</td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 AI Agent Portfolio</p>
+    </footer>
+    <script>
+        document.querySelectorAll('.portfolio-item h3').forEach(item => {
+            item.addEventListener('click', () => {
+                const arrow = item.querySelector('.arrow');
+                const projectDetails = item.nextElementSibling;
+                const isVisible = projectDetails.style.display === 'block';
+
+                document.querySelectorAll('.portfolio-item p, .portfolio-item img, .portfolio-item small').forEach(p => p.style.display = 'none');
+                document.querySelectorAll('.arrow').forEach(arrow => arrow.classList.remove('down'));
+
+                if (!isVisible) {
+                    let currentElement = projectDetails;
+                    while (currentElement) {
+                        currentElement.style.display = 'block';
+                        currentElement = currentElement.nextElementSibling;
+                    }
+                    arrow.classList.add('down');
+                } else {
+                    let currentElement = projectDetails;
+                    while (currentElement) {
+                        currentElement.style.display = 'none';
+                        currentElement = currentElement.nextElementSibling;
+                    }
+                    arrow.classList.remove('down');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
